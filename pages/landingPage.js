@@ -2,6 +2,7 @@ import React from 'react'
 import styled, {css} from 'styled-components'
 import Head from 'next/head'
 import styledNormalize from 'styled-normalize'
+import axios from 'axios'
 
 const Black = '#030707'
 
@@ -148,6 +149,27 @@ padding-top: 10vh;
 `
 
 export default class LandingPage extends React.Component {
+state = {
+  name: "",
+  email: "",
+  introduction: ""
+}
+
+handleSubmit() {
+    let {name, email, introduction} = this.state;
+    axios.post("https://cross-http.herokuapp.com/https://wizardamigos-server.herokuapp.com/api/insert", {
+      email: name, 
+      name: email,
+      interest: "",
+      interests: "",
+      skills: "",
+      backgroundIntro: introduction,
+      portfolioLink: ""
+    })
+    .then((response) => console.log(response)) 
+    .catch((error) => console.log(error));
+  } 
+
   render() {
     return (
       <div>
@@ -216,16 +238,31 @@ export default class LandingPage extends React.Component {
           <Scene6> 
             <FormWrapper>
               name:
-              <input type="text"/>
+              <input 
+                type="text"
+                value={this.state.name}
+                onChange={({target})=>{this.setState({name: target.value})}}
+              />
               email: 
-              <input type="text"/>
+              <input 
+                type="text"
+                value={this.state.email}
+                onChange={({target})=>{this.setState({email: target.value})}}
+              />
               Introduce yourself a bit :) 
-              <textarea />
+              <textarea 
+                value={this.state.introduction}
+                onChange={({target})=>{this.setState({introduction: target.value})}}
+              />
             </FormWrapper>
-            <ButtonBlack submit>Submit</ButtonBlack>
+            <ButtonBlack 
+              onClick={(event) => this.handleSubmit()}
+              submit
+            >Submit</ButtonBlack>
           </Scene6>
         </body>
       </div>
     )
   } 
 }
+
