@@ -158,8 +158,8 @@ state = {
 handleSubmit() {
     let {name, email, introduction} = this.state;
     axios.post("https://cross-http.herokuapp.com/https://wizardamigos-server.herokuapp.com/api/insert", {
-      email: name, 
-      name: email,
+      email: email, 
+      name: name,
       interest: "",
       interests: "",
       skills: "",
@@ -169,6 +169,7 @@ handleSubmit() {
     .then((response) => console.log(response)) 
     .catch((error) => console.log(error));
   } 
+  //上限1000字
 
   render() {
     return (
