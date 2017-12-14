@@ -179,7 +179,7 @@ export default class LandingPage extends Component {
                 <PhotoWrapper>
                   <Lecturer>
                     <Photo big
-                           src="https://raw.githubusercontent.com/TzuYuanLiu/wizardamigos-codecamp2018/master/alex2.jpg" />
+                           src="/static/alex2.jpg" />
                     <TitleOftheEvent>Lecturer</TitleOftheEvent>
                     <Name>Alex Praetorius</Name>
                     <Introduction>JavaScript cyber nomad debugging the global economy with projects like @codingamigos,
@@ -213,7 +213,7 @@ export default class LandingPage extends Component {
                   </CoOrganizer>
                   <CoOrganizer>
                     <Photo
-                      src="https://raw.githubusercontent.com/TzuYuanLiu/wizardamigos-codecamp2018/master/kang.jpg" />
+                      src="/static/kang.jpg" />
                     <TitleOftheEvent>Co-organizers</TitleOftheEvent>
                     <Name small>Oo Kang ZhengKang</Name>
                     <Description>Interactive Engineer</Description>
