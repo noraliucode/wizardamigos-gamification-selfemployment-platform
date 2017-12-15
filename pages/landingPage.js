@@ -4,6 +4,8 @@ import axios from 'axios'
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
+import * as Scroll from 'react-scroll';
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 export default class LandingPage extends Component {
   state = {
@@ -60,7 +62,6 @@ export default class LandingPage extends Component {
       })
   }
 
-  //上限1000字
   renderForm() {
     let { errorMessage } = this.state
     const styles = {
@@ -69,6 +70,7 @@ export default class LandingPage extends Component {
       floatingLabelFocusStyle: { color: '#e488ef' },
       underlineFocusStyle: { borderColor: '#e488ef' },
       inputStyle: { color: '#fff' },
+      textareaStyle: { color: '#fff' }
     }
     return (
       <FormWrapper>
@@ -96,6 +98,16 @@ export default class LandingPage extends Component {
           errorText={errorMessage.email && errorMessage.email}
         />
         <TextField
+          hintText="Please enter your Github/Portfolio link, or uploaded resume file link"
+          floatingLabelText="Portfolio Links"
+          fullWidth
+          value={this.state.portfolioLink}
+          onChange={({ target }) => {
+            this.setState({ portfolioLink: target.value })
+          }}
+          {...styles}
+        />
+        <TextField
           hintText="Introduce yourself a bit :)"
           floatingLabelText="Self-Introduction"
           fullWidth
@@ -119,14 +131,24 @@ export default class LandingPage extends Component {
   }
 
   render() {
-    let { isLoading, isSendingFormSuccess } = this.state;
+    let { isLoading, isSendingFormSuccess, email } = this.state;
     let content = {
       whoWeAre: {
-        chinese: 'Wizard Amigos 來自於德國柏林，目前是一個全球性的非盈利社群。我們的目標是為了給予每位想要更加了解技術及實現想法的人們工具及社群。學習如何建立網頁，行動裝置和桌面應用程式，以及為您的未來帶來了什麼樣的可能性。'
+        eng: 'Wizard Amigos was born in Berlin but is now a global, non-profit community.Our aim is to give tools and community to everyone who wants to better understand technology and toworkon their ideas.Learn prototyping, how to use programming in science, how to build mobile and desktop apps, and what possibilities can technology bring for your future.',
+        chinese: 'Wizard Amigos 來自於德國柏林，目前是一個全球性的非盈利社群。我們的目標是為了給予每位想要更加了解技術及實現想法的人們工具及社群。學習如何建立網頁，行動裝置和桌面應用程式，以及為您的未來帶來了什麼樣的可能性。',
       },
       topics: {
         chinese: [
-          '如何成為自雇者（商業模式圖，營銷/銷售基礎知識，財務/會計，如何創立公司/法律', '遠端工作（籌辦本地公司/協會', '區塊鏈的基本概念以及如何用JavaScript實作'
+          '如何成為自雇者（商業模式圖，營銷/銷售基礎知識，財務/會計，如何創立公司/法律',
+          "遠端工作（籌辦本地公司/協會）",
+          '區塊鏈服務之概論及應用',
+        ],
+        eng: [
+          'Self Employment (business model canvas, basics of marketing/sales, finances/accounting, how to open a company/legal) ',
+          'Remote Gigs/Jobs (forming a local agency/cooperative (as an app)',
+          'JavaScript (how to build web, desktop and mobile apps)',
+          'foundations of blockchain and crypto.',
+          'learn about "secure scuttlebutt" and/or the "dat project”(Bit Torrent 2.0 P2P systems)'
         ]
       }
     }
@@ -138,41 +160,44 @@ export default class LandingPage extends Component {
             <Container>
               <Title>Wizard Amigos CodeCamp 2018</Title>
               <ButtonWrapper>
+                <Link to="test2" spy={true} smooth={true} offset={50} duration={1000}>
                 <ButtonWhite>LEARN MORE</ButtonWhite>
-                <ButtonBlack>SIGN UP NOW!</ButtonBlack>
+                </Link>
+                <Link to="test1" spy={true} smooth={true} offset={50} duration={1500}>
+                <ButtonBlack>
+                    SIGN UP NOW!
+                </ButtonBlack>
+                </Link>
               </ButtonWrapper>
             </Container>
           </Scene1>
-          <Scene2>
+          <Scene2 name="test2">
             <Container>
-              <SubTitle>Who we are</SubTitle>
+                <SubTitle>Who we are</SubTitle>
               <Wrapper>
                 <ListWrapper>
-                  Wizard Amigos was born in Berlin but is now a global, non-profit community.
-                  Our aim is to give tools and community to everyone who wants to better understand technology and to
-                  work
-                  on their ideas.
-                  Learn prototyping, how to use programming in science, how to build mobile and desktop apps, and what
-                  possibilities can technology bring for your future.
+                  {content.whoWeAre.chinese}
+                  <ListWrapperInner>{content.whoWeAre.eng}</ListWrapperInner>
                 </ListWrapper>
               </Wrapper>
             </Container>
           </Scene2>
           <Scene3>
             <Wrapper>
-              <SubTitle>What - Topics</SubTitle>
-              <List> Self Employment (business model canvas, basics of marketing/sales, finances/accounting, how to
-                open a company/legal)</List>
-              <List>Remote Gigs/Jobs (forming a local agency/cooperative (as an app)，</List>
-              <List>JavaScript (how to build web, desktop and mobile apps)</List>
-              <List>foundations of blockchain and crypto.</List>
-              <List>learn about "secure scuttlebutt" and/or the "dat project”(Bit Torrent 2.0 P2P systems)</List>
-
+              <TopicBackground>
+                <SubTitle>What - Topics</SubTitle>
+                {content.topics.chinese.map((list, index) => <List key={`topics_${index}`}>{list}</List>)}
+                <ListWrapperInner>
+                  {content.topics.eng.map((list, index) => <List eng
+                                                                 key={`topics_${index}`}>{list}</List>)}</ListWrapperInner>
+              </TopicBackground>
             </Wrapper>
           </Scene3>
-          <Scene2>
-            <SubTitle>Learn Cyber Nomad spirit with Alex and Nina!</SubTitle>
-          </Scene2>
+          <CyberNomadSpirit>
+            <Wrapper>
+              <SubTitle big>Learn Cyber Nomad spirit with Alex and Nina!</SubTitle>
+            </Wrapper>
+          </CyberNomadSpirit>
           <Scene5>
             <Wrapper>
               <PhotoContainer>
@@ -222,11 +247,65 @@ export default class LandingPage extends Component {
               </PhotoContainer>
             </Wrapper>
           </Scene5>
+          <Wrapper>
+            <DateScene>
+              <SubTitle>When & Where</SubTitle>
+              <DateSceneContentWrapper>
+                <div>
+                  日期:<br />
+                  2018, 1/4 ~ 2/4(每週一四五六日)<br />
+                  4 Jan, 2018 to 4 Feb, 2018 (Every weeks on Sun, Mon, Thu, Fri and Sat)<br />
 
-          <Scene6>
+                  地點:<br />
+                  摩茲工寮 (一, 四)<br />
+                  Mozilla Community Space Taipei<br />
+                  100 台北市中正區八德路一段 94 號 3F<br />
+                  3rd Fl., No. 94, Sec. 1, Ba-de Rd., Zhongzheng District, Taipei City 100, Taiwan<br />
+
+                  國立臺北科技大學 第六教學大樓B1 B216 (五六日)<br />
+                  National Taipei University of Technology, 6th Academic Building.<br />
+                  106 台北市大安區忠孝東路三段1號<br />
+                  1, Sec. 3, Zhongxiao E. Rd., Daan District, Taipei City 106, Taiwan<br />
+
+                  時間:<br />
+                  一四五 19:30 ~ 21:30<br />
+                  Mon, Thu, Fri 7:30pm ~ 9:30pm<br />
+
+                  六日 10:00 ~ 17:00<br />
+                  Sun, Sat 10:00am ~ 5:00pm<br />
+                </div>
+                <Map2 src="/static/map2.jpg" />
+              </DateSceneContentWrapper>
+            </DateScene>
+          </Wrapper>
+          <Scene2>
+            <Wrapper>
+              <SubTitle>What you will learn</SubTitle>
+              <WhatYouWillLearn>
+                從這次活動（共 100 小時）， 你會學到<br />
+                1. Javascript 的基礎應用(Components概念、UMD架構、Nodejs服務端)，發佈自己的微服務、Portfolio網頁<br />
+                2. 區塊鏈服務之概論及應用<br />
+                3. OSS(Open Source Software)及社群去中間化之概念及應用服務(如：DAT Project 2.0 )<br />
+                ** 課程皆使用英語 (Lecture will using English)<br />
+                綜合以上之要素，你在課程結束後，我們會帶你認識自由工作者的接案、公司經營、社群參與、商業模式等知識，<br />
+                進而達到雙贏（利己、利社群），將所學的知識與應用經驗回饋於開源社群，以讓開源社群得以永續發展。<br />
+              </WhatYouWillLearn>
+            </Wrapper>
+          </Scene2>
+          <Scene6 name="test1">
             <Wrapper>
               <SubTitle>Submit Form</SubTitle>
-              {isSendingFormSuccess ? "成功！！！！" :
+              {isSendingFormSuccess ?
+                <SuccessSentWrapper>
+                  <SubTitle style={{color: '#e488ef'}}>太棒了！</SubTitle>
+                  <SuccessSentInnerWrapper>
+                  報名表單已成功送出，請確認您的email {email}
+                  我們將會以此mail通知您後續課程訊息 ：）
+                    <br/>
+                    <br/>
+                    期待在課程上見到您！
+                  </SuccessSentInnerWrapper>
+                </SuccessSentWrapper> :
                 isLoading ? <FormLoadingWrapper><CircularProgress
                     color="#e488ef"
                     size={80}
@@ -287,6 +366,7 @@ cursor: pointer;
 text-align: center;
 `
 const ButtonWhite = styled(Button)`
+border: solid 1px #fff;
 background: #fff;
 color: ${Black};
 `
@@ -312,7 +392,7 @@ align-items: center;
 padding: 40px 0;
 `
 const SubTitle = styled.div`
-font-size: 40px;
+font-size: ${props => props.big ? '60px' : '40px'};
 display: flex;
 justify-content: center;
 margin: 10px 0 10px 0;
@@ -324,7 +404,7 @@ font-size: 25px;
 line-height: 1.5;
 `
 const List = styled.div`
-font-size: 25px;
+font-size: ${props => props.eng ? '18px' : '25px'};
 line-height: 1.5;
 `
 const Scene3 = styled.div`
@@ -335,13 +415,40 @@ width: 100%;
 display: flex;
 align-items: center;
 transition: all .3s;
+min-height: 600px;
+text-align: center;
 &:hover {
   filter: grayscale(0%);
 }
 `
-
+const TopicBackground = styled.div`
+background: rgba(0,0,0,.7);
+margin: auto;
+padding: 45px;
+width: 80%;
+`
+const CyberNomadSpirit = styled(Scene2)`
+height: 500px;
+`
 const Scene5 = styled.div`
 background: #171616;
+`
+const DateScene = styled.div`
+background: #fff;
+color: #4A4A4A;
+`
+const DateSceneContentWrapper = styled.div`
+padding: 20px;
+color: #4A4A4A;
+text-align: left;
+font-size: 20px;
+line-height: 2;
+display: flex;
+align-items: center;
+justify-content: space-around;
+@media(max-width: 768px) {
+flex-direction: column;
+}
 `
 const PhotoContainer = styled.div`
 margin: auto;
@@ -408,6 +515,9 @@ padding-top: 10vh;
   resize: none;
   height: 150px;
 }
+@media(max-width: 768px){
+width: 100%;
+}
 `
 const Introduction = styled.div`
 width: 100%;
@@ -436,4 +546,34 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-
+const ListWrapperInner = styled.div`
+margin-top: 20px;
+font-size: 18px;
+`
+const WhatYouWillLearn = styled.div`
+font-size: 20px;
+line-height: 2;
+text-align: left;
+margin: auto;
+width: 80%;
+`
+const Map2 = styled.img`
+width: 40vw;
+@media(max-width: 768px) {
+height: 500px;
+width: auto;
+}
+`
+const SuccessSentWrapper = styled.div`
+height: 415px;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+`
+const SuccessSentInnerWrapper = styled.div`
+font-size: 25px;
+line-height: 2;
+width: 50%;
+`
