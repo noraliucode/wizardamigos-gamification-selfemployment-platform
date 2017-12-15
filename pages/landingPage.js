@@ -68,9 +68,11 @@ export default class LandingPage extends Component {
       hintStyle: { color: 'gray' },
       floatingLabelStyle: { color: '#e488ef' },
       floatingLabelFocusStyle: { color: '#e488ef' },
+      underlineStyle: {color: '#fff'},
       underlineFocusStyle: { borderColor: '#e488ef' },
       inputStyle: { color: '#fff' },
-      textareaStyle: { color: '#fff' }
+      textareaStyle: { color: '#fff' },
+      style: {marginTop: '10px'}
     }
     return (
       <FormWrapper>
@@ -501,7 +503,7 @@ const Scene6 = styled.div`
 background: #070808;
 `
 const FormWrapper = styled.div`
-width: 50%;
+width: 60%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -515,7 +517,7 @@ padding-top: 10vh;
   resize: none;
   height: 150px;
 }
-@media(max-width: 768px){
+@media(max-width: 1024px){
 width: 100%;
 }
 `
