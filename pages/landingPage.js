@@ -34,7 +34,7 @@ export default class LandingPage extends Component {
   handleCheckEmailisValid(message) {
     this.setState({ isLoading: true })
     let { email, name, introduction, portfolioLink } = this.state
-    const uri = `https://wizardamigoscodecamp-server-rgbbqzlxzs.now.sh/api/checkmail/${email}`
+    const uri = `https://cors-anywhere-ozncbyeprz.now.sh/https://wizardamigoscodecamp-server-rgbbqzlxzs.now.sh/api/checkmail/${email}`
     axios.get(uri)
       .then((response) => {
         if (response.data.message == "email 已被使用") {
