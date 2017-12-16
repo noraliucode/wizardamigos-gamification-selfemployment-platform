@@ -44,7 +44,7 @@ export default class LandingPage extends Component {
           this.setState({ errorMessage: { email: "email已被使用" } })
           this.setState({ isLoading: false })
         } else if (response.data.message == "email 可使用") {
-          axios.post("https://cors-anywhere-ozncbyeprz.now.sh/https://wizardamigoscodecamp-server-izjgtozwkk.now.sh/api/insert", {
+          axios.post("https://cors-anywhere-ozncbyeprz.now.sh/https://wizardamigoscodecamp-server-wmxkvijdte.now.sh/api/insert", {
             email: email,
             name: name,
             interest: "",
