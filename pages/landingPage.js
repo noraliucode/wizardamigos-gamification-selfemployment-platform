@@ -27,7 +27,6 @@ export default class LandingPage extends Component {
         "" : "請輸入一個有效的電子信箱") : "請輸入email，我們會寄送後續活動訊息到此email"
     message['name'] = name ? "" : "請輸入姓名，讓我們知道怎麼稱呼你 :)"
     this.setState({ errorMessage: message })
-    console.log("message", message)
     if (message.email || message.name) return
     this.handleCheckEmailisValid(message)
   }
@@ -35,12 +34,10 @@ export default class LandingPage extends Component {
   handleCheckEmailisValid(message) {
     this.setState({ isLoading: true })
     let { email, name, introduction, portfolioLink } = this.state
-    console.log("noooo", email, name, introduction, portfolioLink )
-    const uri = `https://cross-http.herokuapp.com/https://wizardamigoscodecamp-server-izjgtozwkk.now.sh/api/checkmail/${email}`
+    const uri = `https://wizardamigoscodecamp-server-rgbbqzlxzs.now.sh/api/checkmail/${email}`
     axios.get(uri)
       .then((response) => {
         if (response.data.message == "email 已被使用") {
-          console.log(response)
           this.setState({ errorMessage: { email: "email已被使用" } })
           this.setState({ isLoading: false })
         } else if (response.data.message == "email 可使用") {
