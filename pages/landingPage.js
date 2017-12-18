@@ -34,14 +34,14 @@ export default class LandingPage extends Component {
   handleCheckEmailisValid(message) {
     this.setState({ isLoading: true })
     let { email, name, introduction, portfolioLink } = this.state
-    const uri = `https://cors-anywhere-ozncbyeprz.now.sh/https://wizardamigoscodecamp-server-rgbbqzlxzs.now.sh/api/checkmail/${email}`
+    const uri = `https://wizardamigos-server.herokuapp.com/api/checkmail/${email}`
     axios.get(uri)
       .then((response) => {
         if (response.data.message == "email 已被使用") {
           this.setState({ errorMessage: { email: "email已被使用" } })
           this.setState({ isLoading: false })
         } else if (response.data.message == "email 可使用") {
-          axios.post("https://cors-anywhere-ozncbyeprz.now.sh/https://wizardamigoscodecamp-server-rgbbqzlxzs.now.sh/api/insert", {
+          axios.post("https://wizardamigos-server.herokuapp.com/api/insert", {
             email: email,
             name: name,
             interest: "",
@@ -239,7 +239,7 @@ export default class LandingPage extends Component {
                     <Photo
                       src="/static/kang.jpg" />
                     <TitleOftheEvent>Co-organizers</TitleOftheEvent>
-                    <Name small>Oo Kang ZhengKang</Name>
+                    <Name small>Oo Kang Zheng</Name>
                     <Description>Interactive Engineer</Description>
                   </CoOrganizer>
                 </PhotoWrapper>
