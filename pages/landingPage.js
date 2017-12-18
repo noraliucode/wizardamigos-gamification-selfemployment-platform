@@ -262,13 +262,13 @@ export default class LandingPage extends Component {
                   3rd Fl., No. 94, Sec. 1, Ba-de Rd., Zhongzheng District, Taipei City 100, Taiwan<br />
 
                   國立臺北科技大學 第六教學大樓B1 B216 (五六日)<br />
-                  National Taipei University of Technology, 6th Academic Building. (Fri, Sat, Sun)<br />
+                  B216  6th Academic Building, National Taipei University of Technology (Fri, Sat, Sun)<br />
                   106 台北市大安區忠孝東路三段1號<br />
                   1, Sec. 3, Zhongxiao E. Rd., Daan District, Taipei City 106, Taiwan<br />
 
                   時間:<br />
                   一四五 19:30 ~ 21:30<br />
-                  Mon, Thu, Fri 7:30pm ~ 9:30pm<br />
+                  Mon, Thu, Fri 7:30pm ~ 10:00pm<br />
 
                   六日 10:00 ~ 17:00<br />
                   Sun, Sat 10:00am ~ 5:00pm<br />
@@ -286,6 +286,7 @@ export default class LandingPage extends Component {
                 2. 區塊鏈服務之概論及應用<br />
                 3. OSS(Open Source Software)及社群去中間化之概念及應用服務(如：DAT Project 2.0 )<br />
                 ** 課程皆使用英語 (Lecture will using English)<br />
+                本codecamp採取審核制度（成功頁面與報名頁面都寫）
                 綜合以上之要素，你在課程結束後，我們會帶你認識自由工作者的接案、公司經營、社群參與、商業模式等知識，<br />
                 進而達到雙贏（利己、利社群），將所學的知識與應用經驗回饋於開源社群，以讓開源社群得以永續發展。<br />
               </WhatYouWillLearn>
