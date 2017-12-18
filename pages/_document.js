@@ -33,6 +33,17 @@ export default class MyDocument extends Document {
             }
           `}
         </style>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10405417-17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments)
+          }
+          gtag('js', new Date());
+
+          gtag('config', 'UA-10405417-17');
+        </script>
         {this.props.styleTags}
       </Head>
       <body>
