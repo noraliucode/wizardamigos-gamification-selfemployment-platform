@@ -257,12 +257,12 @@ export default class LandingPage extends Component {
 
                   地點:<br />
                   摩茲工寮 (一, 四)<br />
-                  Mozilla Community Space Taipei<br />
+                  Mozilla Community Space Taipei (Mon, Thur)<br />
                   100 台北市中正區八德路一段 94 號 3F<br />
                   3rd Fl., No. 94, Sec. 1, Ba-de Rd., Zhongzheng District, Taipei City 100, Taiwan<br />
 
                   國立臺北科技大學 第六教學大樓B1 B216 (五六日)<br />
-                  National Taipei University of Technology, 6th Academic Building.<br />
+                  National Taipei University of Technology, 6th Academic Building. (Fri, Sat, Sun)<br />
                   106 台北市大安區忠孝東路三段1號<br />
                   1, Sec. 3, Zhongxiao E. Rd., Daan District, Taipei City 106, Taiwan<br />
 
