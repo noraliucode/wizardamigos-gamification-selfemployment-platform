@@ -133,7 +133,7 @@ export default class LandingPage extends Component {
     let { isLoading, isSendingFormSuccess, email } = this.state;
     let content = {
       whoWeAre: {
-        eng: 'Wizard Amigos was born in Berlin but is now a global, non-profit community.Our aim is to give tools and community to everyone who wants to better understand technology and toworkon their ideas.Learn prototyping, how to use programming in science, how to build mobile and desktop apps, and what possibilities can technology bring for your future.',
+        eng: 'Wizard Amigos was founded in Berlin but is now a global, non-profit community.Our aim is to provide tools and community to everyone who wants to better understand technology and work on their ideas.Learn prototyping, how to use programming in science, how to build mobile and desktop apps, and what possibilities can technology bring for your future.',
         chinese: 'Wizard Amigos 來自於德國柏林，目前是一個全球性的非盈利社群。我們的目標是為了給予每位想要更加了解技術及實現想法的人們工具及社群。學習如何建立網頁，行動裝置和桌面應用程式，以及為您的未來帶來了什麼樣的可能性。',
       },
       topics: {
