@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
 import * as Scroll from 'react-scroll';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import EmailIcon from 'material-ui/svg-icons/communication/email'
 
 export default class LandingPage extends Component {
   state = {
@@ -20,14 +21,15 @@ export default class LandingPage extends Component {
   }
 
   handleValidateInput() {
-    let { name, email } = this.state;
+    let { name, email, introduction } = this.state;
     let message = {}
     message['email'] = email ?
       (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email) ?
         "" : "請輸入一個有效的電子信箱") : "請輸入email，我們會寄送後續活動訊息到此email"
     message['name'] = name ? "" : "請輸入姓名，讓我們知道怎麼稱呼你 :)"
+    message['introduction'] = introduction ? "" : "由於本活動為審核制，此欄位為必填，謝謝您"
     this.setState({ errorMessage: message })
-    if (message.email || message.name) return
+    if (message.email || message.name || message.introduction) return
     this.handleCheckEmailisValid(message)
   }
 
@@ -107,7 +109,7 @@ export default class LandingPage extends Component {
           {...styles}
         />
         <TextField
-          hintText="Introduce yourself a bit :)"
+          hintText="這個欄位是為了讓從德國來的Alex與Nina多認識一些參加者的背景。可以盡可能地介紹您自己，附上履歷表的連結，或任何形式，都很歡迎。:) 並盡量以「英文」填寫。"
           floatingLabelText="Self-Introduction"
           fullWidth
           value={this.state.introduction}
@@ -151,6 +153,14 @@ export default class LandingPage extends Component {
         ]
       }
     }
+    let style = {
+      color: '#CCCCCC',
+      fontSize: '19px',
+      display: 'flex',
+      textDecoration: 'none',
+      alignItems: 'center',
+      margin: '26px 0',
+    }
 
     return (
       <MuiThemeProvider>
@@ -158,6 +168,7 @@ export default class LandingPage extends Component {
           <Scene1>
             <Container>
               <Title>Wizard Amigos CodeCamp 2018</Title>
+              <Wrapper>
               <ButtonWrapper>
                 <Link to="test2" spy={true} smooth={true} offset={50} duration={1000}>
                 <ButtonWhite>LEARN MORE</ButtonWhite>
@@ -168,6 +179,7 @@ export default class LandingPage extends Component {
                 </ButtonBlack>
                 </Link>
               </ButtonWrapper>
+              </Wrapper>
             </Container>
           </Scene1>
           <Scene2 name="test2">
@@ -282,19 +294,18 @@ export default class LandingPage extends Component {
               <SubTitle>What you will learn</SubTitle>
               <WhatYouWillLearn>
                 從這次活動（共 100 小時）， 你會學到<br />
-                1. Javascript 的基礎應用(Components概念、UMD架構、Nodejs服務端)，發佈自己的微服務、Portfolio網頁<br />
-                2. 區塊鏈服務之概論及應用<br />
-                3. OSS(Open Source Software)及社群去中間化之概念及應用服務(如：DAT Project 2.0 )<br />
-                ** 課程皆使用英語 (Lecture will using English)<br />
-                本codecamp採取審核制度（成功頁面與報名頁面都寫）
-                綜合以上之要素，你在課程結束後，我們會帶你認識自由工作者的接案、公司經營、社群參與、商業模式等知識，<br />
-                進而達到雙贏（利己、利社群），將所學的知識與應用經驗回饋於開源社群，以讓開源社群得以永續發展。<br />
+                1. 英文為主要語言的團隊溝通模式<br />
+                2. Javascript 的基礎應用(此次活動之主要語言)<br />
+                3. 區塊鏈服務之概論及應用(如：DAT Project 2.0 )<br />
+                4. OSS(Open Source Software)<br />
+                ** 課程皆使用英語 (Lecture will be in English)<br />
+                綜合以上之要素，你在課程結束後，我們會帶你認識自由工作者的接案、公司經營、社群參與、商業模式等知識，進而達到雙贏（利己、利社群），將所學的知識與應用經驗回饋於開源社群，以讓開源社群得以永續發展。<br />
               </WhatYouWillLearn>
             </Wrapper>
           </Scene2>
           <Scene6 name="test1">
             <Wrapper>
-              <SubTitle>Submit Form</SubTitle>
+              <SubTitle>Sign Up</SubTitle>
               {isSendingFormSuccess ?
                 <SuccessSentWrapper>
                   <SubTitle style={{color: '#e488ef'}}>太棒了！</SubTitle>
@@ -315,8 +326,8 @@ export default class LandingPage extends Component {
           </Scene6>
           <Footer>
             <Wrapper>
-              wizardamigos.codecamp@gmail.com
-              WizardAmigos @wizardamigos
+              <a style={style} href="mailto:wizardamigos.codecamp@gmail.com"><EmailIcon style={{width: '50px', height: '50px', color: '#fff', marginRight: '10px'}} />wizardamigos.codecamp@gmail.com</a>
+              <a style={style} target="_blank" href="https://www.facebook.com/groups/369246343421803/"><FaceBookIcon style={{marginRight: '10px'}}/>WizardAmigos Codecamp on Facebook</a>
               WizardAmigos is a FREE open source, open collaborative, and free DIY programming school from Berlin, now
               starting in Taipei. People of all skill levels and backgrounds are welcome to join and learn together.
             </Wrapper>
@@ -529,7 +540,6 @@ const Footer = styled.div`
 width: 100%;
 height: 300px;
 font-size: 15px;
-text-align: center;
 display: flex;
 align-items: center;
 background: #111111;
@@ -560,8 +570,7 @@ width: 80%;
 const Map2 = styled.img`
 width: 40vw;
 @media(max-width: 768px) {
-height: 500px;
-width: auto;
+width: 100%;
 }
 `
 const SuccessSentWrapper = styled.div`
@@ -571,9 +580,19 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+@media(max-width: 768px) {
+  height: auto;
+}
 `
 const SuccessSentInnerWrapper = styled.div`
 font-size: 25px;
 line-height: 2;
 width: 50%;
+`
+const FaceBookIcon = styled.div`
+display: inline-block;
+width: 50px;
+height: 50px;
+background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IgogICAgIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIKICAgICB2aWV3Qm94PSIwIDAgNTAgNTAiCiAgICAgc3R5bGU9IjtmaWxsOiNjY2NjY2M7IgogICAgIGNsYXNzPSJpY29uIGljb25zOC1mYWNlYm9vay1maWxsZWQiPiAgICA8cGF0aCBkPSJNNDEsNEg5QzYuMjQsNCw0LDYuMjQsNCw5djMyYzAsMi43NiwyLjI0LDUsNSw1aDMyYzIuNzYsMCw1LTIuMjQsNS01VjlDNDYsNi4yNCw0My43Niw0LDQxLDR6IE0zNywxOWgtMmMtMi4xNCwwLTMsMC41LTMsMiB2M2g1bC0xLDVoLTR2MTVoLTVWMjloLTR2LTVoNHYtM2MwLTQsMi03LDYtN2MyLjksMCw0LDEsNCwxVjE5eiI+PC9wYXRoPjwvc3ZnPg==') 50% 50% no-repeat;
+background-size: 100%;
 `

@@ -22,6 +22,10 @@ export default class MyDocument extends Document {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
         <meta charSet="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,shrink-to-fit=no"/>
+        <meta name="description" content="WizrdAmigos Codecamp will held a monthly “FREE” Boot Camp!!!" />
+        <meta property="og:title" content="WizardAmigos Codecamp 2018" />
+        <meta property="og:image" content="path/og_image" />
+        <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
         <style>{`
             ${styledNormalize}
             html, body{
