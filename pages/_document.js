@@ -25,6 +25,7 @@ export default class MyDocument extends Document {
         <meta name="description" content="WizrdAmigos Codecamp will held a monthly “FREE” Boot Camp!!!" />
         <meta property="og:title" content="WizardAmigos Codecamp 2018" />
         <meta property="og:image" content="/static/og_image.jpg" />
+        <meta property="og:url" content="https://wizardamigos-codecamp2018.herokuapp.com/landingPage">
         <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
         <style>{`
             ${styledNormalize}
