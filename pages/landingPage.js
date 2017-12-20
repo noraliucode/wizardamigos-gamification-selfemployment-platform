@@ -136,7 +136,7 @@ export default class LandingPage extends Component {
     let content = {
       whoWeAre: {
         eng: 'Wizard Amigos was founded in Berlin but is now a global, non-profit community.Our aim is to provide tools and community to everyone who wants to better understand technology and work on their ideas.Learn prototyping, how to use programming in science, how to build mobile and desktop apps, and what possibilities can technology bring for your future.',
-        chinese: 'Wizard Amigos 來自於德國柏林，目前是一個全球性的非盈利社群。我們的目標是為了給予每位想要更加了解技術及實現想法的人們工具及社群。學習如何建立網頁，行動裝置和桌面應用程式，以及為您的未來帶來了什麼樣的可能性。',
+        chinese: 'Wizard Amigos 來自於德國柏林，目前是一個全球性的非盈利社群。我們的目標是為了給予每位想要更加了解技術及實現想法，想要遠端工作、成為自雇者的人們工具及社群。學習如何建立網頁，行動裝置和桌面應用程式，以及為您的未來帶來了什麼樣的可能性。',
       },
       topics: {
         chinese: [
@@ -304,6 +304,8 @@ export default class LandingPage extends Component {
                 2. Javascript 的基礎應用(此次活動之主要語言)<br />
                 3. 區塊鏈服務之概論及應用(如：DAT Project 2.0 )<br />
                 4. OSS(Open Source Software)<br />
+                5. 如何成為自雇者（商業模式圖，營銷/銷售基礎知識，財務/會計，如何創立公司/法律)<br />
+                6. 遠端工作（籌辦本地公司/協會)<br />
                 ** 課程皆使用英語 (Lecture will be in English)<br />
                 綜合以上之要素，你在課程結束後，我們會帶你認識自由工作者的接案、公司經營、社群參與、商業模式等知識，進而達到雙贏（利己、利社群），將所學的知識與應用經驗回饋於開源社群，以讓開源社群得以永續發展。<br />
               </WhatYouWillLearn>
