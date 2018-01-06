@@ -1,2 +1,5 @@
+
+
 npm run dev and the app will run on localhost:8080 
-Please enter localhost:8080/landingPage 
+
+This is a platform for amigos to login and have their progress of skill tree 
